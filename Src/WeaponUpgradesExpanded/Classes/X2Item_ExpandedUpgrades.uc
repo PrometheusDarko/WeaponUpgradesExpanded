@@ -270,7 +270,7 @@ static function X2DataTemplate CreatePrototypeFreeFireUpgrade()
 {
 	local X2WeaponUpgradeTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2WeaponUpgradeTemplate', Template, 'FreeFireUpgrade_Sup');
+	`CREATE_X2TEMPLATE(class'X2WeaponUpgradeTemplate', Template, 'FreeFireUpgrade_Prt');
 
 	SetUpFreeFireBonusUpgrade(Template);
 	SetUpTier4Upgrade(Template);

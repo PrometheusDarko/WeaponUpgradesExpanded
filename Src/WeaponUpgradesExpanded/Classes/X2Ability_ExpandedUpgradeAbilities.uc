@@ -1,3 +1,27 @@
+//------------------------------------------------------------------------
+//	FILE: X2Ability_ExpandedUpgradeAbilities.uc
+//	AUTHOR: PrometheusDarko (No Fox Gaming)
+//	PURPOSE: Adds stat modifiers and abilities for new upgrades
+//
+//------------------------------------------------------------------------
+
+class X2Ability_ExpandedUpgradeAbilities extends X2Ability
+	dependson (XComGameStateContext_Ability) config(UpgradesExpanded);
+
+//********************************
+//***********LASER SIGHT**********
+//********************************
+var config int CRIT_UPGRADE_PRT;
+
+static function array<X2DataTemplate> CreateTemplates()
+{
+	local array<X2DataTemplate> Templates;
+
+	Templates.AddItem(LaserSight_Prt());
+	
+	return Templates;
+}
+
 static function X2AbilityTemplate LaserSight(int CritBonus, name TemplateName)
 {
 	local X2AbilityTemplate						Template;
