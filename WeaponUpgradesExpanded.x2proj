@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>52b0a880-d21e-4a6b-a0be-1d63ca2d8156</Guid>
+    <Name>WeaponUpgradesExpanded</Name>
+    <Description>PromethesusDarko's project</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>WeaponUpgradesExpanded</AssemblyName>
+    <RootNamespace>WeaponUpgradesExpanded</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Content\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Src\" />
+    <Folder Include="Src\WeaponUpgradesExpanded\" />
+    <Folder Include="Src\WeaponUpgradesExpanded\Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\XcomUpgradesExpanded.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEngine.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGame.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameCore.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+    <Content Include="ModPreview.jpg" />
+    <Content Include="Src\WeaponUpgradesExpanded\Classes\X2Ability_ExpandedUpgradeAbilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WeaponUpgradesExpanded\Classes\X2DownloadableContentInfo_WeaponUpgradesExpanded.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WeaponUpgradesExpanded\Classes\X2Item_ExpandedUpgrades.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>

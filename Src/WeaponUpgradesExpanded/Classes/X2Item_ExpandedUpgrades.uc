@@ -70,6 +70,7 @@ static function X2DataTemplate CreatePrototypeCritUpgrade()
 	SetUpTier4Upgrade(Template);
 
 	Template.BonusAbilities.AddItem('LaserSight_Prt');
+	Template.BonusAbilities.AddItem('LaserSight_BonusSkill');
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamAssaultRifle_OpticB_inv";
 	Template.CritBonus = default.CRIT_UPGRADE_PRT;
