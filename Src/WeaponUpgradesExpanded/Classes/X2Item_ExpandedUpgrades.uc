@@ -138,6 +138,7 @@ static function X2DataTemplate CreatePrototypeAimUpgrade()
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamSniper_OpticC_inv";
 	Template.AimBonus = default.AIM_UPGRADE_PRT;
 	Template.AimBonusNoCover = default.AIM_UPGRADE_NOCOVER_PRT;
+	Template.BonusAbilities.AddItem('Scope_BonusSkill');
 	
 	return Template;
 }
@@ -197,6 +198,7 @@ static function X2DataTemplate CreatePrototypeClipSizeUpgrade()
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamAssaultRifle_MagB_inv";
 	Template.ClipSizeBonus = default.CLIP_SIZE_PRT;
+	Template.BonusAbilities.AddItem('HailOfBullets');
 	
 	return Template;
 }
@@ -442,6 +444,7 @@ static function X2DataTemplate CreatePrototypeMissDamageUpgrade()
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamAssaultRifle_HeatsinkB_inv";
 	Template.BonusDamage = default.MISS_DAMAGE_PRT;
+	Template.BonusAbilities.AddItem('EverVigilant');
 	
 	return Template;
 }
