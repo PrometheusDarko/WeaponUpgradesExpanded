@@ -1,21 +1,17 @@
 //------------------------------------------------------------------------
 //	FILE: X2Ability_ExpandedUpgradeAbilities.uc
-//	AUTHOR: PrometheusDarko (No Fox Gaming) & TheMediator
+//	AUTHORS: PrometheusDarko (No Fox Gaming), TheMediator, & BTernaryTau
 //	PURPOSE: Adds stat modifiers and abilities for new upgrades
 //
 //------------------------------------------------------------------------
 
-class X2Ability_ExpandedUpgradeAbilities extends X2Ability
-	dependson (XComGameStateContext_Ability) config(UpgradesExpanded);
-
-
-var config int CRIT_UPGRADE_PRT;
-var config int MARK_TARGET_LOCAL_COOLDOWN;
-var config int HEADSHOT_COOLDOWN;
+class X2Ability_ExpandedUpgradeAbilities extends X2Ability dependson(XComGameStateContext_Ability);
 
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
+
+	class'WUE_MCMListener'.static.LoadUserConfig();
 
 	Templates.AddItem(LaserSight_Prt());
 	Templates.AddItem(LaserSight_BonusSkill());
@@ -30,8 +26,8 @@ static function array<X2DataTemplate> CreateTemplates()
 
 static function X2AbilityTemplate LaserSight_Prt()
 {
-	local X2AbilityTemplate						Template;
-	local X2Effect_LaserSight                   LaserSightEffect;
+	local X2AbilityTemplate Template;
+	local X2Effect_LaserSight LaserSightEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LaserSight_Prt');
 
@@ -47,7 +43,7 @@ static function X2AbilityTemplate LaserSight_Prt()
 	LaserSightEffect = new class'X2Effect_LaserSight';
 	LaserSightEffect.BuildPersistentEffect(1, true, false, false);
 	LaserSightEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
-	LaserSightEffect.CritBonus = class'X2Item_ExpandedUpgrades'.default.CRIT_UPGRADE_PRT;
+	LaserSightEffect.CritBonus = class'WUE_MCMListener'.default.CRIT_UPGRADE_PRT;
 	LaserSightEffect.FriendlyName = Template.LocFriendlyName;
 	Template.AddTargetEffect(LaserSightEffect);
 
@@ -77,7 +73,7 @@ static function X2AbilityTemplate LaserSight_BonusSkill()
 	Template.Hostility = eHostility_Offensive;
 
 	Cooldown = new class'X2AbilityCooldown_LocalAndGlobal';
-	Cooldown.iNumTurns = default.MARK_TARGET_LOCAL_COOLDOWN;
+	Cooldown.iNumTurns = class'WUE_MCMListener'.default.MARK_TARGET_LOCAL_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
@@ -135,27 +131,27 @@ static function X2AbilityTemplate LaserSight_BonusSkill()
 
 simulated function TargetGettingMarked_BuildVisualization(XComGameState VisualizeGameState, out array<VisualizationTrack> OutVisualizationTracks)
 {
-	local XComGameStateHistory				History;
-	local XComGameStateContext_Ability		Context;
-	local StateObjectReference				ShooterUnitRef;
-	local StateObjectReference				TargetUnitRef;
-	local XComGameState_Ability				Ability;
-	local X2AbilityTemplate					AbilityTemplate;
-	local AbilityInputContext				AbilityContext;
+	local XComGameStateHistory History;
+	local XComGameStateContext_Ability Context;
+	local StateObjectReference ShooterUnitRef;
+	local StateObjectReference TargetUnitRef;
+	local XComGameState_Ability Ability;
+	local X2AbilityTemplate AbilityTemplate;
+	local AbilityInputContext AbilityContext;
 	
-	local VisualizationTrack				EmptyTrack;
-	local VisualizationTrack				BuildTrack;
+	local VisualizationTrack EmptyTrack;
+	local VisualizationTrack BuildTrack;
 
-	local X2Action_PlaySoundAndFlyOver		SoundAndFlyOver;
-	local X2Action_WaitForAbilityEffect		WaitForAbilityEffect;
-	local X2Action_SendInterTrackMessage    SendMessageAction;
-	local X2Action_PlayAnimation            PlayAnimation;
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+	local X2Action_WaitForAbilityEffect WaitForAbilityEffect;
+	local X2Action_SendInterTrackMessage SendMessageAction;
+	local X2Action_PlayAnimation PlayAnimation;
 
-	local Actor								TargetVisualizer, ShooterVisualizer;
-	local X2VisualizerInterface				TargetVisualizerInterface, ShooterVisualizerInterface;
-	local int								EffectIndex;
+	local Actor TargetVisualizer, ShooterVisualizer;
+	local X2VisualizerInterface TargetVisualizerInterface, ShooterVisualizerInterface;
+	local int EffectIndex;
 
-	local name								ApplyResult;
+	local name ApplyResult;
 	
 
 	History = `XCOMHISTORY;
@@ -269,12 +265,12 @@ simulated function TargetGettingMarked_BuildVisualization(XComGameState Visualiz
 
 static function X2AbilityTemplate Scope_BonusSkill()
 {
-	local X2AbilityTemplate                 Template;
-	local X2AbilityCooldown                 Cooldown;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2Condition_Visibility            TargetVisibilityCondition;
-	local X2AbilityCost_Ammo                AmmoCost;
-	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityTemplate Template;
+	local X2AbilityCooldown Cooldown;
+	local X2AbilityToHitCalc_StandardAim ToHitCalc;
+	local X2Condition_Visibility TargetVisibilityCondition;
+	local X2AbilityCost_Ammo AmmoCost;
+	local X2AbilityCost_ActionPoints ActionPointCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Scope_BonusSkill');
 
@@ -292,7 +288,7 @@ static function X2AbilityTemplate Scope_BonusSkill()
 	Template.CinescriptCameraType = "StandardGunFiring";
 
 	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.HEADSHOT_COOLDOWN;
+	Cooldown.iNumTurns = class'WUE_MCMListener'.default.HEADSHOT_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';

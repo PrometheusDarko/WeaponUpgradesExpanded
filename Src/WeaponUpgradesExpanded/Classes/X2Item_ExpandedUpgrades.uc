@@ -1,15 +1,6 @@
 // Borrowed from X2Item_DefaultUpgrades for formatting and content. Should create and configure the upgrades
 // Unsure as of yet if this actually creates the upgrades or just configures them.
-class X2Item_ExpandedUpgrades extends X2Item config(UpgradesExpanded);
-
-var config int CRIT_UPGRADE_PRT;
-var config int AIM_UPGRADE_PRT;
-var config int AIM_UPGRADE_NOCOVER_PRT;
-var config int CLIP_SIZE_PRT;
-var config int FREE_FIRE_PRT;
-var config int FREE_RELOADS_PRT;
-var config WeaponDamageValue MISS_DAMAGE_PRT;
-var config int FREE_KILL_PRT;
+class X2Item_ExpandedUpgrades extends X2Item;
 
 var localized string FreeReloadAbilityName;
 var localized array<string> UpgradeBlackMarketTexts;
@@ -17,6 +8,8 @@ var localized array<string> UpgradeBlackMarketTexts;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array <X2DataTemplate> Items;
+
+	class'WUE_MCMListener'.static.LoadUserConfig();
 
 	Items.AddItem(CreatePrototypeCritUpgrade());
 	
@@ -73,7 +66,7 @@ static function X2DataTemplate CreatePrototypeCritUpgrade()
 	Template.BonusAbilities.AddItem('LaserSight_BonusSkill');
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamAssaultRifle_OpticB_inv";
-	Template.CritBonus = default.CRIT_UPGRADE_PRT;
+	Template.CritBonus = class'WUE_MCMListener'.default.CRIT_UPGRADE_PRT;
 	
 	return Template;
 }
@@ -136,8 +129,8 @@ static function X2DataTemplate CreatePrototypeAimUpgrade()
 	SetUpTier4Upgrade(Template);
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamSniper_OpticC_inv";
-	Template.AimBonus = default.AIM_UPGRADE_PRT;
-	Template.AimBonusNoCover = default.AIM_UPGRADE_NOCOVER_PRT;
+	Template.AimBonus = class'WUE_MCMListener'.default.AIM_UPGRADE_PRT;
+	Template.AimBonusNoCover = class'WUE_MCMListener'.default.AIM_UPGRADE_NOCOVER_PRT;
 	Template.BonusAbilities.AddItem('Scope_BonusSkill');
 	
 	return Template;
@@ -197,7 +190,7 @@ static function X2DataTemplate CreatePrototypeClipSizeUpgrade()
 	SetUpTier4Upgrade(Template);
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamAssaultRifle_MagB_inv";
-	Template.ClipSizeBonus = default.CLIP_SIZE_PRT;
+	Template.ClipSizeBonus = class'WUE_MCMListener'.default.CLIP_SIZE_PRT;
 	Template.BonusAbilities.AddItem('HailOfBullets');
 	
 	return Template;
@@ -279,7 +272,7 @@ static function X2DataTemplate CreatePrototypeFreeFireUpgrade()
 	SetUpTier4Upgrade(Template);
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.MagSniper_TriggerB_inv";
-	Template.FreeFireChance = default.FREE_FIRE_PRT;
+	Template.FreeFireChance = class'WUE_MCMListener'.default.FREE_FIRE_PRT;
 	
 	return Template;
 }
@@ -355,7 +348,7 @@ static function X2DataTemplate CreatePrototypeReloadUpgrade()
 	SetUpTier4Upgrade(Template);
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamAssaultRifle_AutoLoader_inv";
-	Template.NumFreeReloads = default.FREE_RELOADS_PRT;
+	Template.NumFreeReloads = class'WUE_MCMListener'.default.FREE_RELOADS_PRT;
 	
 	return Template;
 }
@@ -443,7 +436,7 @@ static function X2DataTemplate CreatePrototypeMissDamageUpgrade()
 	SetUpTier4Upgrade(Template);
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamAssaultRifle_HeatsinkB_inv";
-	Template.BonusDamage = default.MISS_DAMAGE_PRT;
+	Template.BonusDamage = class'WUE_MCMListener'.default.MISS_DAMAGE_PRT;
 	Template.BonusAbilities.AddItem('EverVigilant');
 	
 	return Template;
@@ -536,7 +529,7 @@ static function X2DataTemplate CreatePrototypeFreeKillUpgrade()
 	SetUpTier4Upgrade(Template);
 
 	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.BeamAssaultRifle_PrtressorB_inv";
-	Template.FreeKillChance = default.FREE_KILL_Prt;
+	Template.FreeKillChance = class'WUE_MCMListener'.default.FREE_KILL_Prt;
 	
 	return Template;
 }
